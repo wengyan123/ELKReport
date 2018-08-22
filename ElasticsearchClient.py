@@ -12,7 +12,7 @@ class ElasticsearchClient:
             self._host = kwargs['host']
         self.client = Elasticsearch(self._host)
 
-
+    # https://elasticsearch-py.readthedocs.io/en/master/api.html?highlight=search()#elasticsearch.Elasticsearch.search
     def search(self, dsl, **kwargs):
         if 'index' in kwargs:
             self._index = kwargs['index']
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                 {"match": {"message": "wengyan"}}
               ],
               "filter": [
-                {"range": {"@timestamp": {"gte": "2018-08-16", "lte": "2018-08-17"}}}
+                {"range": {"@timestamp": {"gte": "2018-08-19", "lte": "2018-08-20"}}}
               ]
             }
           }
