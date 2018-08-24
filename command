@@ -1,5 +1,5 @@
 # beat
-celery -A watcher beat --loglevel=DEBUG
+celery -A watcher beat --loglevel=INFO
 
 # worker
-celery worker -A watcher --loglevel=Info
+celery worker -A watcher --loglevel=INFO
