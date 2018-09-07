@@ -1,7 +1,7 @@
 from celery import Celery
-from time import sleep
 
 from elasticsearchClient import ElasticsearchClient
+
 
 
 app = Celery('Watcher')

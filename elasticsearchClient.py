@@ -1,5 +1,7 @@
 from elasticsearch import Elasticsearch
 
+from mongodbClient import MongodbClient
+
 
 class ElasticsearchClient:
     _host = 'localhost:9200'
@@ -28,10 +30,14 @@ class ElasticsearchClient:
             body=dsl
         )
 
-        messages = []
+        messages = {}
         for hit in response['hits']['hits']:
-            messages.append(hit['_source']['message'])
-
+            #messages[hit['_source']['@timestamp'][:-5]] = hit['_source']['message']
+            message = {}
+            message_id = hit['_id']
+            message['timestamp'] = hit['_source']['@timestamp'][:-5]
+            message['content'] = hit['_source']['message']
+            messages[message_id] = message
         return messages
 
 
@@ -52,5 +58,6 @@ if __name__ == '__main__':
           }
         }
     messages = client.search(dsl)
-    for msg in messages:
-        print msg
+    print messages
+    mongodbClient = MongodbClient()
+    mongodbClient.storeReport(messages)
