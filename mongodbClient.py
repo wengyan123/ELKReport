@@ -14,7 +14,7 @@ class MongodbClient:
         self.client = MongoClient(self._host)
         self.db = self.client[self._db_name]
 
-    def storeReport(self, data, collection=_collection):
+    def storeReport(self, document, collection=_collection):
         reports = self.db[collection]
-        result = reports.insert_one(data)
+        result = reports.insert_one(document)
         print('One post: {0}'.format(result.inserted_id))

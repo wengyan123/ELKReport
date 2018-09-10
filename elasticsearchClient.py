@@ -35,7 +35,7 @@ class ElasticsearchClient:
             #messages[hit['_source']['@timestamp'][:-5]] = hit['_source']['message']
             message = {}
             message_id = hit['_id']
-            message['timestamp'] = hit['_source']['@timestamp'][:-5]
+            message['timestamp'] = hit['_source']['@timestamp']
             message['content'] = hit['_source']['message']
             messages[message_id] = message
         return messages
