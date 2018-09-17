@@ -58,6 +58,6 @@ if __name__ == '__main__':
           }
         }
     messages = client.search(dsl)
-    print messages
-    mongodbClient = MongodbClient()
-    mongodbClient.storeReport(messages)
+
+    mongodb_client = MongodbClient()
+    mongodb_client.putReport(messages)
